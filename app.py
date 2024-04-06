@@ -121,7 +121,7 @@ def submit_order():
         # else:
         #     # Create a new order
         order_details = {
-                'table_number': TABLE_NUMBER[0],
+                'table_number': TABLE_NUMBER[len(TABLE_NUMBER)-1],
                 'items': {item:quantity for item, quantity in quantities.items()},
                 'datetime': datetime.now()  # Add current date and time
             }

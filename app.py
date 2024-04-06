@@ -114,18 +114,18 @@ def submit_order():
         quantities = {item: int(request.form.get(f'{item}_quantity', 0)) for item in selected_items}
         
         # Check if an order already exists for the table number
-        existing_order = order_collection.find_one({'table_number': TABLE_NUMBER[0]})
-        if existing_order:
+        # existing_order = order_collection.find_one({'table_number': TABLE_NUMBER[0]})
+        # if existing_order:
             
-            return "<script>alert('An order already exists for this table. You cannot add a new order until the existing one is Finished!!')</script>"
-        else:
-            # Create a new order
-            order_details = {
+        #     return "<script>alert('An order already exists for this table. You cannot add a new order until the existing one is Finished!!')</script>"
+        # else:
+        #     # Create a new order
+        order_details = {
                 'table_number': TABLE_NUMBER[0],
                 'items': {item:quantity for item, quantity in quantities.items()},
                 'datetime': datetime.now()  # Add current date and time
             }
-            order_collection.insert_one(order_details)
+        order_collection.insert_one(order_details)
 
         total_price = 0
         for item, quantity in quantities.items():

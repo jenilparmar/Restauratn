@@ -1,5 +1,4 @@
-Gunicorn
-Flask 
-dotenv 
-pymongo
-datetime
+Flask==3.0.0
+dotenv
+pymongo==4.6.1
+datetime==5.3

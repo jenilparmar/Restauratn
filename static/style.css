@@ -124,7 +124,8 @@ button {
 #btn{
   /* background-color: blue; */
 position: relative;
-right: 17%;
+/* right: 0%; */
+left:-45px;
 
 }
 #btn:hover,

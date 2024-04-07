@@ -91,7 +91,7 @@ def submit_order():
         quantities = {item: int(request.form.get(f'{item}_quantity', 0)) for item in selected_items}
         table_number = request.form["table_number"]
         order_details = {
-                'table_number': table_number,
+                'table_number': int(table_number),
                 'items': {item:quantity for item, quantity in quantities.items()},
                 'datetime': datetime.now()  # Add current date and time
             }

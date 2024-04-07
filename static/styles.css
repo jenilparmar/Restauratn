@@ -284,6 +284,71 @@ h1 {
   transition: 0.2s;
   transition-property: box-shadow;
 }
-/* input{
-  color: wheat;
-} */
+@media only screen and (max-width: 455px) {
+  body{
+margin: 0;
+padding:0;
+  }
+  .Quote{
+    width: 80vw;
+    height: 15vh;
+  }
+  .input1{
+    margin-top: 3em;
+
+    border-radius:15px ;
+  }
+  .container{
+    display: flex;
+    margin-top: -0.5em;
+    flex-direction: column;
+  }
+  .container1{
+    width: 95vw;
+    align-self: center;
+  }
+  table{
+    width: 50vw;
+    align-self: center;
+    border-collapse: collapse;
+    /* width: 100%; */
+  }
+  .navbar{
+    width: 95vw;
+    position: relative;
+    left: 0;
+    gap: 0;
+    margin-left: 0;
+  }
+  .dishname{
+    margin-left: 0;
+    /* background-color: blue; */
+    width: 20vw;
+
+
+    position: relative;
+    left: -35%;
+    
+    max-width: 20vw; /* Adjust maximum width as needed */
+    /* overflow: hidden; */
+    white-space: wrap;
+    font-size: inherit;
+    text-overflow: ellipsis;
+  }
+  .price{
+    font-size: 0.7em;
+    margin-left: 0;
+    position: absolute;
+    left: 9em;
+    margin-top: 0.38em;
+  }
+  .number-quantity{
+    position: absolute;
+    left: 12.5em;
+  }
+  .checkbox{
+    position: absolute;
+    left: 19.5em;
+ 
+  }
+}

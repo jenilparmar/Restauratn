@@ -11,7 +11,7 @@ load_dotenv()
 TABLE_NUMBER=[]
 # Flask app initialization
 USERNAME = "Spider_Man"
-PASSWORD = "Mary_Jane"
+PASSWORD = "123"
 app = Flask(__name__)
 connection_string = os.getenv("CONNECTIONSTRING")
 
@@ -150,13 +150,22 @@ def RemoveItem():
         return render_template('RemoveItem.html', removed_items=removed_items)  # Pass removed_items to the template
     else:
         return "Nothing to Remove!!"
-@app.route('/Billings_and_Managements')
+@app.route('/Billings_and_Managements' ,methods=['POST','GET'])
 def Billings_and_Managements():
-    Order_Thali = {}
-    res = order_collection.find()
-    for order in res:
-        Order_Thali[order['_id']] = order  # Assuming '_id' is the ID field in your MongoDB document
-    return render_template('Billings_and_Managements.html', Order_Thali=Order_Thali)
+    if request.method=="GET":
+        return render_template('Authentication2.html')  
+    if request.method=="POST":
+        username = request.form['username']
+        password = request.form['password']
+        if username == USERNAME and password==PASSWORD:
+        
+            Order_Thali = {}
+            res = order_collection.find()
+            for order in res:
+                Order_Thali[order['_id']] = order  # Assuming '_id' is the ID field in your MongoDB document
+            return render_template('Billings_and_Managements.html', Order_Thali=Order_Thali)
+        else:
+            return "You Are Not A Owner!!"
 # Main function to run the Flask app
 # @app.route('/view_order_details/<int:table_number>')
 # def view_order_details(table_number):

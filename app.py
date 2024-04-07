@@ -78,9 +78,8 @@ def order_page():
     if request.method == "POST":
         table_number = request.form['table_number']
         q = quotes[random.randint(0,len(quotes)-2)]
+        TABLE_NUMBER.clear()  # Clear the list before appending the new table number
         TABLE_NUMBER.append(int(table_number))
-  
-
         return render_template('Order.html', ITEMS={key: value for key, value in ITEMS.items() if key != '_id'}, tableNo=table_number, q=q)
     else:
         return "BYE"

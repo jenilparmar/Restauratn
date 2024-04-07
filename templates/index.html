@@ -13,18 +13,16 @@
   </head>
   <body>
     <div class="container">
-      <form action="/order_page" method="post">
+     
         <p id="Welcome">Welcome</p>
-        <input
-          placeholder="Table No."
-          class="input"
-          name="table_number"
-          type="number" />
+        
 
         <br />
-
+        <br>
+        <a
+        href="{{ url_for('order_page') }}">
         <button type="submit" id="btn">Order</button>
-      </form>
+    </a>
     </div>
   </body>
 </html>

@@ -73,54 +73,25 @@ def items():
     thali_data = ITEMS[dish]
     return render_template('Items.html', dish=dish, Thali=thali_data)
 
-@app.route('/order_page', methods=["POST"])
+@app.route('/order_page', methods=["POST","GET"])
 def order_page():
-    if request.method == "POST":
-        table_number = request.form['table_number']
+    
+        # table_number = request.form['table_number']
         q = quotes[random.randint(0,len(quotes)-2)]
-        TABLE_NUMBER.clear()  # Clear the list before appending the new table number
-        TABLE_NUMBER.append(int(table_number))
-        return render_template('Order.html', ITEMS={key: value for key, value in ITEMS.items() if key != '_id'}, tableNo=table_number, q=q)
-    else:
-        return "BYE"
+        # TABLE_NUMBER.clear()  # Clear the list before appending the new table number
+        # TABLE_NUMBER.append(int(table_number))
+        return render_template('Order.html', ITEMS={key: value for key, value in ITEMS.items() if key != '_id'}, q=q)
+    
 
-# @app.route('/submit_order', methods=['POST'])
-# def submit_order():
-#     if request.method == 'POST':
-#         selected_items = request.form.getlist('item')
-#         quantities = {item: int(request.form.get(f'{item}_quantity', 0)) for item in selected_items}
-        
-#         order_details = {
-#             'table_number': TABLE_NUMBER[0],
-#             'items': {item:quantity for item, quantity in quantities.items()},
-#             'datetime': datetime.now()  # Add current date and time
-#         }
-#         order_collection.insert_one(order_details)
-
-#         total_price = 0
-#         for item, quantity in quantities.items():
-#             for category, items in ITEMS.items():
-#                 if item in items:
-#                     total_price += items[item] * quantity
-#                     break
-#         return render_template('OrderSuccess.html', quantities=quantities, total_price=total_price, ITEMS={key: value for key, value in ITEMS.items() if key != '_id'})
-# from bson import ObjectId
 
 @app.route('/submit_order', methods=['POST'])
 def submit_order():
     if request.method == 'POST':
         selected_items = request.form.getlist('item')
         quantities = {item: int(request.form.get(f'{item}_quantity', 0)) for item in selected_items}
-        
-        # Check if an order already exists for the table number
-        # existing_order = order_collection.find_one({'table_number': TABLE_NUMBER[0]})
-        # if existing_order:
-            
-        #     return "<script>alert('An order already exists for this table. You cannot add a new order until the existing one is Finished!!')</script>"
-        # else:
-        #     # Create a new order
+        table_number = request.form["table_number"]
         order_details = {
-                'table_number': TABLE_NUMBER[len(TABLE_NUMBER)-1],
+                'table_number': table_number,
                 'items': {item:quantity for item, quantity in quantities.items()},
                 'datetime': datetime.now()  # Add current date and time
             }
@@ -254,4 +225,4 @@ def delete_order(table_number):
     order_collection.delete_one({"table_number":table_number})
     return f'<script>alert("Order of Table Number {table_number} is Deleted!!")</script>'
 if __name__ == "__main__":
-    app.run(debug=False , host='0.0.0.0')
+    app.run(debug=True , host='0.0.0.0')

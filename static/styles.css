@@ -269,16 +269,21 @@ h1 {
   max-width: 200px;
   height: 27px;
   padding: 10px;
-  margin: 7em 11em;
+  margin: 1em 1em;
   text-align: center;
   border: 3px solid wheat;
+  /* color: wheat; */
+  font-size: 1.2em;
   border-radius: 5px;
 }
 
 .input1:focus {
-  color: black;
+  color: wheat;
   background-color: transparent;
   outline-color: black;
   transition: 0.2s;
   transition-property: box-shadow;
 }
+/* input{
+  color: wheat;
+} */
